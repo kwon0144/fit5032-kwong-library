@@ -201,7 +201,7 @@ h1 {
 }
 
 .highlight {
-  background-color: #42b883;
+  background-color: yellow;
 }
 
 code {
