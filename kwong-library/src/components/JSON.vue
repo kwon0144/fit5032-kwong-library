@@ -37,11 +37,9 @@
       </ul>
 
       <h3>Finding in Arrays</h3>
-      <ul>
-        <li> 
+      <p>
           Finding by property: {{ orwell?.name }}
-        </li>
-      </ul>
+      </p>
 
       <h3>Nested Arrays/Objects</h3>
       <p>{{ austen?.name }}'s works:</p>
@@ -77,8 +75,11 @@
       <p>Store Types:</p>
       <!-- Activity 10: Iterate through the storeTypes array and display the store type and the number of stores that use that type. -->
       <!-- TODO: CODE TO RENDER LIST OF STORE TYPES HERE -->
-      <p v-for="(value, key) in bookstores.storeTypes" :key="key">{{  key }}: {{ value }}</p>
-      
+      <ul>
+        <li v-for="(value, key) in bookstores.storeTypes" :key="key">
+          {{  key }}: {{ value }}
+        </li>
+      </ul>
 
       <h3>Nested Objects</h3>
       <p>Opening Hours:</p>
@@ -93,14 +94,18 @@
       <h3>Working with Arrays in Objects</h3>
       <!-- Activity 12: Get the top sellers from the bookstores object. -->
       <!-- TODO: CODE TO GET TOP SELLERS HERE -->
-      <p>
-        We operate in:
-        <span v-for="country in bookstores.countries" :key="country">
+      <p> We operate in: </p>
+      <ul>
+        <li v-for="country in bookstores.countries" :key="country">
           {{ country }}
-          <span v-if="country != bookstores.countries[bookstores.countries.length - 1]">, </span>
-        </span>
-      </p>
-      <p>Our #1 seller: {{ bookstores.topSellers[0] }}</p>
+        </li>
+      </ul>
+      <p> Our top sellers: </p>
+      <ul>
+        <li v-for="seller in bookstores.topSellers" :key="seller">
+          {{ seller }}
+        </li>
+      </ul>
     </section>
 
     <section class="lab-section">
