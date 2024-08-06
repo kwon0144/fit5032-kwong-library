@@ -43,7 +43,7 @@
         </div>
     </div>
     <div class="row mt-5" v-if="submittedCards.length">
-   <div class="d-flex flex-wrap justify-content-start">
+   <div class="d-flex flex-wrap justify-content-center justify-content-md-start">
       <div v-for="(card, index) in submittedCards" :key="index" class="card m-2" style="width: 18rem;">
          <div class="card-header">
             User Information
@@ -75,6 +75,51 @@
    .list-group-item {
    padding: 10px;
    }
+
+/* Smartphone */
+@media (max-width: 767px) {
+  .container {
+    padding: 10px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .card-header {
+    background-color: lightcoral;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  .card-header {
+    background-color: lightgreen;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .container {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .card-header {
+    background-color: lightblue;
+  }
+}
 </style>
 
 <script setup>
