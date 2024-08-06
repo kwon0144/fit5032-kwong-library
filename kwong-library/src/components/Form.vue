@@ -5,7 +5,7 @@
                 <h1 class="text-center">User Information Form</h1>
                 <form @submit.prevent="submitForm">
                     <div class="row mb-3">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3-mobile">
                             <label for="username" class="form-label">Username</label>
                             <input type="text" class="form-control" id="username" v-model="formData.username">
                         </div>
@@ -15,13 +15,13 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3-mobile">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="isAustralian" v-model="formData.isAustralian">
                                 <label class="form-check-label" for="isAustralian">Australian Resident?</label>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 ">
                             <label for="gender" class="form-label">Gender</label>
                             <select class="form-select" id="gender" v-model="formData.gender">
                                 <option value="male">Male</option>
@@ -43,7 +43,7 @@
         </div>
     </div>
     <div class="row mt-5" v-if="submittedCards.length">
-   <div class="d-flex flex-wrap justify-content-center justify-content-md-start">
+   <div class="d-flex flex-wrap justify-content-center">
       <div v-for="(card, index) in submittedCards" :key="index" class="card m-2" style="width: 18rem;">
          <div class="card-header">
             User Information
@@ -85,10 +85,13 @@
   h1 {
     font-size: 1.5rem;
   }
-
   .card-header {
-    background-color: lightcoral;
-  }
+      background-color: green;
+    }
+    
+  .mb-3-mobile {
+        margin-bottom: 1rem;
+    }
 }
 
 /* Tablet */
@@ -100,10 +103,9 @@
   h1 {
     font-size: 1.75rem;
   }
-
   .card-header {
-    background-color: lightgreen;
-  }
+      background-color: red;
+    }
 }
 
 /* Desktop */
@@ -115,10 +117,9 @@
   h1 {
     font-size: 2rem;
   }
-
   .card-header {
-    background-color: lightblue;
-  }
+      background-color: blue;
+    }
 }
 </style>
 
