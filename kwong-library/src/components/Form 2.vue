@@ -60,37 +60,6 @@
 </div>
 </template>
 
-<script setup>
-    import { ref } from 'vue';
-    
-    const formData = ref({
-        username: '',
-        password: '',
-        isAustralian: false,
-        reason: '',
-        gender: ''
-    });
-    
-    const submittedCards = ref([]);
-    
-    const submitForm = () => {
-        submittedCards.value.push({
-            ...formData.value
-        });
-    };
-
-    const clearForm = () =>{
-    // clear the data
-    formData.value = {
-        username: '',
-        password: '',
-        isAustralian: false,
-        reason: '',
-        gender: ''
-    };
-  }
-</script>
-
 <style scoped>
    .card {
    border: 1px solid #ccc;
@@ -107,3 +76,35 @@
    padding: 10px;
    }
 </style>
+
+<script setup>
+import { ref } from 'vue';
+  
+  const formData = ref({
+      username: '',
+      password: '',
+      isAustralian: false,
+      reason: '',
+      gender: ''
+  });
+  
+  const submittedCards = ref([]);
+  
+  const submitForm = () => {
+      submittedCards.value.push({
+          ...formData.value
+      });
+  };
+
+  const clearForm = () =>{
+    // clear the data
+    formData.value = {
+        username: '',
+        password: '',
+        isAustralian: false,
+        reason: '',
+        gender: ''
+    };
+  }
+</script>
+
