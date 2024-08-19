@@ -1,9 +1,12 @@
 
 <template>
-    <div class="container mt-5">
+    <div class="about">
+        <h1>🗄️ W5. Library Registration Form</h1>
+        <p>Let's build some more advanced features into our forum.</p>
+    </div>
+    <div class="container mt-3">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <h1 class="text-center">User Information Form</h1>
                 <form @submit.prevent="submitForm">
                     <div class="row mb-3">
                         <div class="col-6">
@@ -13,22 +16,6 @@
                               @input="() => validateName(false)" 
                             v-model="formData.username">
                             <div v-if="errors.username" class="text-danger">{{ errors.username }}</div>
-                        </div>
-                        <div class="col-6">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" 
-                              @blur="() => validatePassword(true)"
-                              @input="() => validatePassword(false)"
-                            v-model="formData.password">
-                            <div v-if="errors.password" class="text-danger">{{  errors.password }}</div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-6">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="isAustralian" v-model="formData.isAustralian">
-                                <label class="form-check-label" for="isAustralian">Australian Resident?</label>
-                            </div>
                         </div>
                         <div class="col-6 ">
                             <label for="gender" class="form-label">Gender</label>
@@ -43,6 +30,32 @@
                             <div v-if="errors.gender" class="text-danger">{{  errors.gender }}</div>
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" 
+                              @blur="() => validatePassword(true)"
+                              @input="() => validatePassword(false)"
+                            v-model="formData.password">
+                            <div v-if="errors.password" class="text-danger">{{  errors.password }}</div>
+                        </div>
+                        <div class="col-6">
+                            <label for="confirm-password" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirm-password" 
+                              @blur="() => validateConfirmPassword(true)"
+                              @input="() => validateConfirmPassword(false)"
+                            v-model="formData.confirmPassword">
+                            <div v-if="errors.confirmPassword" class="text-danger">{{  errors.confirmPassword }}</div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="isAustralian" v-model="formData.isAustralian">
+                                <label class="form-check-label" for="isAustralian">Australian Resident?</label>
+                            </div>
+                        </div>
+                    </div>
                     <div class="mb-3">
                         <label for="reason" class="form-label">Reason for joining</label>
                         <textarea class="form-control" id="reason" rows="3" 
@@ -50,6 +63,11 @@
                             @input="() => validateReason(false)"
                         v-model="formData.reason"></textarea>
                         <div v-if="errors.reason" class="text-danger">{{ errors.reason }}</div>
+                        <div v-else-if="messages.reason" class="text-success">{{ messages.reason }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reason" class="form-label">Suburb</label>
+                        <input type="text" class="form-control" id="suburb" v-bind:value="formData.suburb" />
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary me-2">Submit</button>
@@ -59,7 +77,8 @@
             </div>
         </div>
     </div>
-    <div class="row mt-5" v-if="submittedCards.length">
+    <h3 class="mt-5">This is a Primevue Database</h3>
+    <div>
         <DataTable :value="submittedCards" tableStyle="min-width: 50rem">
             <Column field="username" header="Username"></Column>
             <Column field="password" header="Password"></Column>
@@ -78,9 +97,11 @@
     const formData = ref({
         username: '',
         password: '',
+        confirmPassword: '',
         isAustralian: false,
         reason: '',
-        gender: ''
+        gender: '',
+        suburb: 'Clayton'
     });
     
     const submittedCards = ref([]);
@@ -88,9 +109,10 @@
     const submitForm = () => {
         validateName(true);
         validatePassword(true);
+        validateConfirmPassword(true);
         validateGender(true);
         validateReason(true);
-        if (!errors.value.username && !errors.value.password 
+        if (!errors.value.username && !errors.value.password && !errors.value.confirmPassword
             && !errors.value.gender && !errors.value.reason) {
             submittedCards.value.push({ ...formData.value });
             clearForm()
@@ -102,19 +124,27 @@
     formData.value = {
         username: '',
         password: '',
+        confirmPassword: '',
         isAustralian: false,
         reason: '',
-        gender: ''
+        gender: '',
+        suburb: ''
     };
   }
 
     const errors = ref({
         username: null,
         password: null,
+        confirmPassword: null,
         resident: null,
         gender: null,
-        reason: null
+        reason: null,
+        suburb: null
     });
+
+    const messages = ref({
+        reason: null
+    })
 
     const validateName = (blur) => {
         if(formData.value.username.length < 3){
@@ -147,6 +177,14 @@
         }
     };
 
+    const validateConfirmPassword = (blur) => {
+        if (formData.value.confirmPassword !== formData.value.password){
+            if (blur) errors.value.confirmPassword = 'Passwords do not match.'
+        } else {
+            errors.value.confirmPassword = null;
+        }
+    }
+
     const validateGender = (blur) => {
         if(formData.value.gender === ''){
             if (blur) errors.value.gender = "Please select an item in the list.";
@@ -156,28 +194,18 @@
     };
 
     const validateReason = (blur) => {
-        if (formData.value.reason === ''){
-            if (blur) errors.value.reason = "Please fill in this field.";
+    if (formData.value.reason === '') {
+        if (blur) errors.value.reason = "Please fill in this field.";
+    } else if (formData.value.reason.length < 10) {
+        errors.value.reason = "Input must be at least 10 characters.";
+    } else {
+        errors.value.reason = null;
+        if (formData.value.reason.toLowerCase().includes('friend')) {
+            messages.value.reason = "Great to have a friend";
         } else {
-            errors.value.reason = null;
+            messages.value.reason = null;
         }
     }
+};
 
 </script>
-
-<style scoped>
-   .card {
-   border: 1px solid #ccc;
-   border-radius: 10px;
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-   }
-   .card-header {
-   background-color: #275FDA;
-   color: white;
-   padding: 10px;
-   border-radius: 10px 10px 0 0;
-   }
-   .list-group-item {
-   padding: 10px;
-   }
-</style>

@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import router from './router'
 
 //import './assets/main.css'
 //import './style.css'
@@ -15,5 +16,6 @@ app.use(PrimeVue, {
         preset: Aura
     }
 })
+app.use(router)
 
-createApp(App).mount('#app')
+app.mount('#app')
