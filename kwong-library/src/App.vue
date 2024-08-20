@@ -25,3 +25,6 @@ import BHeader from './components/BHeader.vue'
     margin-top: 20px; /* Adjust this value to control how far from the top the content appears */
   }
 </style>
+
+
+

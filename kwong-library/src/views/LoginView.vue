@@ -29,6 +29,7 @@
     import { useRouter } from 'vue-router';
 
     const router = useRouter();
+    import { isAuthenticated } from '../router/index.js';
 
     const loginInput = ref({
         username: '',
@@ -44,7 +45,7 @@
         }
         else {
             errormessage.value = null;
-            localStorage.setItem('isAuthenticated', 'true');
+            isAuthenticated.value = 'true';
             router.push('/about');
         }
     };

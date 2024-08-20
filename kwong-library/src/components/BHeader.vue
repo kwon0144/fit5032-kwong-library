@@ -12,10 +12,26 @@
         <li class="nav-item">
           <router-link to="/about" class="nav-link" active-class="active">About</router-link>
         </li>
-        <li class="nav-item">
-          <router-link to="/login" class="nav-link" active-class="active">Login(Week6)</router-link>
+        <li v-if="isAuthenticated == 'false'" class="nav-item">
+          <router-link to="/login" class="nav-link" active-class="active">LogIn(Week6)</router-link>
+        </li>
+        <li v-else-if="isAuthenticated == 'true'" class="nav-item">
+          <router-link to="/login" class="nav-link" active-class="active" @click="logOut">LogOut</router-link>
         </li>
       </ul>
     </header>
   </div>
 </template>
+
+<script setup>
+  import { computed } from 'vue';
+  import { useRouter } from 'vue-router';
+
+  const router = useRouter();
+
+  import { isAuthenticated } from '../router/index.js';
+
+  const logOut = () => {
+    isAuthenticated.value = 'false';
+  }
+</script>
