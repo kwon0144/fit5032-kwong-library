@@ -27,10 +27,10 @@
 <script setup>
     import { ref } from 'vue';
     import { useRouter } from 'vue-router';
-
-    const router = useRouter();
     import { isAuthenticated } from '../router/index.js';
 
+    const router = useRouter();
+    
     const loginInput = ref({
         username: '',
         password: ''

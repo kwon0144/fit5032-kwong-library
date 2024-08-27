@@ -9,7 +9,10 @@
             >Home (Week 5)</router-link
           >
         </li>
-        <li class="nav-item">
+        <li v-if="isAuthenticated == 'false'" class="nav-item">
+          <router-link to="/access-denial" class="nav-link" active-class="active">About</router-link>
+        </li>
+        <li v-else-if="isAuthenticated == 'true'" class="nav-item">
           <router-link to="/about" class="nav-link" active-class="active">About</router-link>
         </li>
         <li v-if="isAuthenticated == 'false'" class="nav-item">
@@ -24,11 +27,6 @@
 </template>
 
 <script setup>
-  import { computed } from 'vue';
-  import { useRouter } from 'vue-router';
-
-  const router = useRouter();
-
   import { isAuthenticated } from '../router/index.js';
 
   const logOut = () => {
