@@ -8,6 +8,8 @@
 <script setup>
 import { ref } from "vue"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import { doc, getDoc } from 'firebase/firestore'
+import { db } from '../firebase/firebase.js'
 import { useRouter } from "vue-router";
 
 const email = ref ("")
@@ -16,13 +18,30 @@ const router = useRouter()
 const auth = getAuth()
 
 const signin = () => {
-    signInWithEmailAndPassword(getAuth(), email.value, password.value)
+    signInWithEmailAndPassword(auth, email.value, password.value)
     .then((data) => {
-        console.log("Firebase Register Successful!")
-        router.push("/")
+        console.log("Sign In Successful!")
         console.log(auth.currentUser)
-    }).catch((error) => {
-        console.log(error.code)
+        const docRef = doc(db, 'users', data.user.uid);
+        return getDoc(docRef);
     })
+    .then((docSnap) => {
+        if (docSnap.exists()) {
+            const role = docSnap.data().role;
+            if (role === "admin") {
+                console.log("Admin Log In")
+                router.push("/")
+            } else {
+                console.log("User Log In")
+                router.push("/")
+            }
+        } else {
+            console.log("No such document")
+        }
+    })
+    .catch((error) => {
+        console.log(error.code)
+    });
 }
 </script>
+

@@ -21,11 +21,14 @@
         <li v-else-if="isAuthenticated == 'true'" class="nav-item">
           <router-link to="/login" class="nav-link" active-class="active" @click="logOut">LogOut</router-link>
         </li>
-        <li v-if="isAuthenticated == 'false'" class="nav-item">
+        <li class="nav-item">
           <router-link to="/FireLogin" class="nav-link" active-class="active">Firebase Login</router-link>
         </li>
-        <li v-if="isAuthenticated == 'false'" class="nav-item">
+        <li class="nav-item">
           <router-link to="/FireRegister" class="nav-link" active-class="active">Firebase Register</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/FireLogout" class="nav-link" active-class="active">Firebase Log out</router-link>
         </li>
       </ul>
     </header>
