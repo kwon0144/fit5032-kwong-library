@@ -6,6 +6,7 @@ import AccessDenialView from '../views/AccessDenialView.vue'
 import FirebaseSigninView from '../views/FirebaseSigninView.vue'
 import FirebaseRegisterView from '../views/FirebaseRegisterView.vue'
 import FirebaseLogoutView from '../views/FirebaseLogoutView.vue'
+import AddBookView from '../views/AddBookView.vue'
 
 import { ref } from 'vue';
 
@@ -35,6 +36,11 @@ const routes = [
         path: '/access-denial',
         name: 'Access Denial',
         component: AccessDenialView
+    },
+    {
+        path: '/add-book',
+        name: 'Add Book',
+        component: AddBookView
     },
     {
         path: '/FireLogin',

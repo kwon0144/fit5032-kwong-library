@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import PrimeVue from 'primevue/config';
 import Aura from '@primevue/themes/aura';
 
-import './firebase/firebase.js'; // Initilise firebase and firestore
+import './firebase/init.js'; // Initilise firebase and firestore
 
 const app = createApp(App);
 app.use(PrimeVue, {
