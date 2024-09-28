@@ -30,22 +30,6 @@ const error = ref(null)
 const router = useRouter()
 const auth = getAuth()
 
-const validateEmail = (blur) => {
-    const isCorrectFormat = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.value);
-    if (email.value.length < 1 || !isCorrectFormat) {
-        if (blur) error.value = '* please input a valid email'
-    } else if (userType.value == "admin") {
-        const isAdminFormat = /^[a-zA-Z0-9._%+-]+@book\.com$/.test(email.value);
-        if (!isAdminFormat) {
-            if (blur) error.value = '* please input a valid admin email';
-        } else {
-            error.value = null;
-        }
-    } else {
-        error.value = null;
-    }
-}
-
 const register = () => {
     validateEmail(true);
     if (error.value == null){
@@ -63,5 +47,22 @@ const register = () => {
             console.log(error.code);
         })
     }
-};
+}
+
+const validateEmail = (blur) => {
+    const isCorrectFormat = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.value);
+    if (email.value.length < 1 || !isCorrectFormat) {
+        if (blur) error.value = '* please input a valid email'
+    } else if (userType.value == "admin") {
+        const isAdminFormat = /^[a-zA-Z0-9._%+-]+@book\.com$/.test(email.value);
+        if (!isAdminFormat) {
+            if (blur) error.value = '* please input a valid admin email';
+        } else {
+            error.value = null;
+        }
+    } else {
+        error.value = null;
+    }
+}
+
 </script>
