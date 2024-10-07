@@ -4,7 +4,7 @@ import router from './router'
 
 //import './assets/main.css'
 //import './style.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import PrimeVue from 'primevue/config';
 import Aura from '@primevue/themes/aura';
