@@ -6,7 +6,7 @@ import router from './router'
 //import './style.css'
 //import 'bootstrap/dist/css/bootstrap.min.css';
 
-import PrimeVue from 'primevue/config';
+import PrimeVue from './node_modules/primevue/config';
 import Aura from '@primevue/themes/aura';
 
 import './firebase/init.js'; // Initilise firebase and firestore
