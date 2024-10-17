@@ -6,7 +6,6 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/fit5032-kwong-library/', // Set this to your repository name
   plugins: [
     vue(),
     vueDevTools(),
@@ -15,7 +14,8 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  }
+  },
+  base: '/fit5032-kwong-library/'
 })
 
 // for trigger deployment
