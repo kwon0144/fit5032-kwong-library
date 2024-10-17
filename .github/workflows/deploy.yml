@@ -29,6 +29,7 @@ jobs:
       with:
         branch: gh-pages
         folder: dist
-
+        clean: true  # Clears out the existing gh-pages branch content
+          
 permissions:
   contents: write
