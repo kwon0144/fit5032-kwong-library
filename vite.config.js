@@ -6,6 +6,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: 'fit5032-kwong-library',
   plugins: [
     vue(),
     vueDevTools(),
