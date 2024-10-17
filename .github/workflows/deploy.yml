@@ -38,3 +38,5 @@ jobs:
 
 permissions:
   contents: write
+
+# for trigger deployment
