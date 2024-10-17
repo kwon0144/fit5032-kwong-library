@@ -18,25 +18,17 @@ jobs:
       with:
         node-version: '20'
 
-    - name: Change Directory
-      run: cd week11/kwong-library-deploy
-
     - name: Install dependencies
       run: npm ci
-      working-directory: ./week11/kwong-library-deploy
 
     - name: Build
       run: npm run build
-      working-directory: ./week11/kwong-library-deploy
 
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
         branch: gh-pages
-        folder: week11/kwong-library-deploy/dist
-        clean: true
+        folder: dist
 
 permissions:
   contents: write
-
-# for trigger deployment
