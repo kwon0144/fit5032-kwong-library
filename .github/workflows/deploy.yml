@@ -34,6 +34,7 @@ jobs:
       with:
         branch: gh-pages
         folder: week11/kwong-library-deploy/dist
+        clean: true
 
 permissions:
   contents: write
