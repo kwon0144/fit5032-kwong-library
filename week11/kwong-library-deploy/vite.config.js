@@ -14,11 +14,7 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  }
+  },
+  base: process.env.NODE_ENV === 'production' ? '/fit5032-kwong-library/' : '/'
 })
 
-module.exports = {
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/fit5032-kwong-library/'
-    : '/'
-}
