@@ -14,8 +14,7 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  },
-  base: '/fit5032-kwong-library/'
+  }
 })
 
 // for trigger deployment
