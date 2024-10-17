@@ -18,3 +18,6 @@ export default defineConfig({
   base: process.env.NODE_ENV === 'production' ? '/fit5032-kwong-library/' : '/'
 })
 
+// for trigger deployment
+
+
